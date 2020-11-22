@@ -1,0 +1,87 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>StartUp</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <style>
+        .split {
+            height: 100%;
+            width: 50%;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            overflow-x: hidden;
+            padding-top: 20px;
+        }
+
+        /* Control the left side */
+        .left {
+            left: 0;
+            background-color: #585858;
+            opacity: 0.5;
+        }
+            .left:hover {
+                background-color: #787878;
+                opacity: 0.5;
+            }
+        /* Control the right side */
+        .right {
+            right: 0;
+            background-color: #404040;
+            opacity: 0.5;
+        }
+            .right:hover {
+                background-color: #282828;
+                opacity: 0.5;
+            }
+        /* If you want the content centered horizontally and vertically */
+        .centered {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            color:whitesmoke;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+            /* Style the image inside the centered container, if needed */
+            .centered img {
+                width: 50%;
+                border-radius: 50%;
+            }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="split left"onclick="location.href='/Home/Index/1';">
+            <div class="centered">
+                <img src="~/Content/Images/boss.png" alt="Boss">*
+                <h2>Employeur</h2>
+                
+            </div>
+        </div>
+
+        <div class="split right" onclick="location.href='/Home/Index/2';">
+           
+                <div class="centered">
+                    <img src="~/Content/Images/Driver.jpg"  alt="Driver">
+                    <h2>Livreur</h2>
+
+                </div>
+            
+        </div>
+    </div>
+</body>
+</html>
