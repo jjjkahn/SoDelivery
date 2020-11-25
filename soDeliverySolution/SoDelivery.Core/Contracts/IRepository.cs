@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SoDelivery.Core.Contracts
 {
-    public interface IRepository<T> where T : Person
+    public interface IRepository<T> where T : BaseEntity
     {
         IQueryable<T> Collection();
         void Commit();

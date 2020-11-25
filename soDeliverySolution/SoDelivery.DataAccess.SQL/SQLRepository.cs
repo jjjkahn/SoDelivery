@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SoDelivery.DataAccess.SQL
 {
-    public class SQLRepository<T> : IRepository<T> where T : Person
+   public class SQLRepository<T> : IRepository<T> where T : BaseEntity
     {
         internal DataContext context;
         internal DbSet<T> dbset;

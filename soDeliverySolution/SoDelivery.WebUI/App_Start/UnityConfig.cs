@@ -1,9 +1,9 @@
-using SoDelivery.Core.Contracts;
 using SoDelivery.Core.Models;
-using SoDelivery.DataAccess.SQL;
 using System;
-
+using SoDelivery.Core.Contracts;
 using Unity;
+using SoDelivery.DataAccess.InMemory;
+using SoDelivery.DataAccess.SQL;
 
 namespace SoDelivery.WebUI
 {
@@ -45,7 +45,9 @@ namespace SoDelivery.WebUI
 
             // TODO: Register your type's mappings here.
             // container.RegisterType<IProductRepository, ProductRepository>();
-            container.RegisterType<IRepository<Driver>, SQLRepository<Driver>>();
+            container.RegisterType<IRepository<Ticket>, SQLRepository<Ticket>>();
+            container.RegisterType<IRepository<Availability>, SQLRepository<Availability>>();
+            container.RegisterType<IRepository<Account>, SQLRepository<Account>>();
         }
     }
 }

@@ -8,15 +8,19 @@ using System.Threading.Tasks;
 
 namespace SoDelivery.DataAccess.SQL
 {
-    public class DataContext : DbContext
+   public class DataContext: DbContext
     {
-        //Underline DB to check DB conectionstrings
         public DataContext() : base("DefaultConnection")
         {
 
         }
 
-        public DbSet<Driver> driver { get; set; }
-      
+        public DbSet<Account> Products { get; set; }
+        public DbSet<Ticket> ProductCategories { get; set; }
+        public DbSet<Contact> Baskets { get; set; }
+        public DbSet<Availability> BasketItems { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+     //   public DbSet<Contact> Contacts { get; set; }
+
     }
 }
