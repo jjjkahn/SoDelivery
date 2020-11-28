@@ -4,6 +4,8 @@ using SoDelivery.Core.Contracts;
 using Unity;
 using SoDelivery.DataAccess.InMemory;
 using SoDelivery.DataAccess.SQL;
+using SoDelivery.WebUI.Controllers;
+using Unity.Injection;
 
 namespace SoDelivery.WebUI
 {
@@ -48,6 +50,8 @@ namespace SoDelivery.WebUI
             container.RegisterType<IRepository<Ticket>, SQLRepository<Ticket>>();
             container.RegisterType<IRepository<Availability>, SQLRepository<Availability>>();
             container.RegisterType<IRepository<Account>, SQLRepository<Account>>();
+            container.RegisterType<IRepository<Customer>, SQLRepository<Customer>>();
+            container.RegisterType<AccountController>( new InjectionConstructor());
         }
     }
 }

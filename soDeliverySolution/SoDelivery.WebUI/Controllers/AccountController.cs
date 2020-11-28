@@ -8,6 +8,8 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using SoDelivery.Core.Contracts;
+using SoDelivery.Core.Models;
 using SoDelivery.WebUI.Models;
 
 namespace SoDelivery.WebUI.Controllers
@@ -17,11 +19,15 @@ namespace SoDelivery.WebUI.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-
+        private IRepository<Customer> customerRepository;
+        public AccountController(IRepository<Customer> customerRepository)
+        {
+            this.customerRepository = customerRepository;
+        }
         public AccountController()
         {
-        }
 
+        }
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
         {
             UserManager = userManager;
@@ -137,8 +143,9 @@ namespace SoDelivery.WebUI.Controllers
         //
         // GET: /Account/Register
         [AllowAnonymous]
-        public ActionResult Register()
+        public ActionResult Register(int id)
         {
+            ViewBag.Account = id;
             return View();
         }
 
@@ -156,13 +163,16 @@ namespace SoDelivery.WebUI.Controllers
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    Customer customer = new Customer()
+                    {
 
+                    };
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);

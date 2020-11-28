@@ -10,6 +10,7 @@ namespace SoDelivery.Core.Models
 {
     public class Availability: BaseEntity
     {
+        public string UserId { get; set; }
         [Required(ErrorMessage = "Expiration Date is required")]
         [DataType(DataType.Date)]
 
