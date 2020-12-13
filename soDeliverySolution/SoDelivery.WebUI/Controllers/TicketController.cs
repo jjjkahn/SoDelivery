@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using SoDelivery.Core.Contracts;
 using SoDelivery.Core.Models;
 using SoDelivery.DataAccess.InMemory;
 
 namespace SoDelivery.WebUI.Controllers
 {
+    [Authorize(Roles ="Employeur")]
     public class TicketController : Controller
     {
         // GET: Ticket
@@ -34,6 +36,7 @@ namespace SoDelivery.WebUI.Controllers
             {
                 return View(ticket);
             }
+            ticket.UserId = User.Identity.GetUserId();
             context.Insert(ticket);
             context.Commit();
             return RedirectToAction("Index");

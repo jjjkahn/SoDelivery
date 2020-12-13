@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using SoDelivery.Core.Models;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
@@ -95,8 +96,9 @@ namespace SoDelivery.WebUI.Models
         public string State { get; set; }
         [Required]
         public string ZipCode { get; set; }
+        public ICollection<Account> MembershipTypes { get; set; }
         [Required]
-        public string AccountType { get; set; }
+        public string AccountTypeId { get; set; }
     }
 
     public class ResetPasswordViewModel

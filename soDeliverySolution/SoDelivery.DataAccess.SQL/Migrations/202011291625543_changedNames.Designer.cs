@@ -7,13 +7,13 @@ namespace SoDelivery.DataAccess.SQL.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.0-30225")]
-    public sealed partial class AddeduserId : IMigrationMetadata
+    public sealed partial class changedNames : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddeduserId));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(changedNames));
         
         string IMigrationMetadata.Id
         {
-            get { return "202011280132365_AddeduserId"; }
+            get { return "202011291625543_changedNames"; }
         }
         
         string IMigrationMetadata.Source

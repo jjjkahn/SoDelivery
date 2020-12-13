@@ -51,7 +51,7 @@ namespace SoDelivery.WebUI
             container.RegisterType<IRepository<Availability>, SQLRepository<Availability>>();
             container.RegisterType<IRepository<Account>, SQLRepository<Account>>();
             container.RegisterType<IRepository<Customer>, SQLRepository<Customer>>();
-            container.RegisterType<AccountController>( new InjectionConstructor());
+            //container.RegisterType<AccountController>( new InjectionConstructor());
         }
     }
 }

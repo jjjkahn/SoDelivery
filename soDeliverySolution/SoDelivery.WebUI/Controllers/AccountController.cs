@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
@@ -6,6 +7,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using SoDelivery.Core.Contracts;
@@ -19,10 +21,12 @@ namespace SoDelivery.WebUI.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-        private IRepository<Customer> customerRepository;
-        public AccountController(IRepository<Customer> customerRepository)
+         IRepository<Customer> customerRepository;
+         IRepository<Account> accountRepository;
+        public AccountController(IRepository<Customer> customerContext, IRepository<Account> accountContex)
         {
-            this.customerRepository = customerRepository;
+            customerRepository = customerContext;
+            accountRepository = accountContex;
         }
         public AccountController()
         {
@@ -146,7 +150,12 @@ namespace SoDelivery.WebUI.Controllers
         public ActionResult Register(int id)
         {
             ViewBag.Account = id;
-            return View();
+            List<Account> accounts = accountRepository.Collection().ToList();
+            RegisterViewModel newUser = new RegisterViewModel()
+            {
+                MembershipTypes = accounts
+            };
+            return View(newUser);
         }
 
         //
@@ -158,21 +167,60 @@ namespace SoDelivery.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { 
+                    UserName = model.Email, 
+                    Email = model.Email,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    AccountTypeId = model.AccountTypeId,
+                    ZipCode = model.ZipCode,
+                    Street = model.Street,
+                    City = model.City,
+
+                };
                 var result = await UserManager.CreateAsync(user, model.Password);
+                Account a = accountRepository.Find(model.AccountTypeId);
+
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+                    model.MembershipTypes =accountRepository.Collection().ToList();
+                    var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
+                    var roleManager = new RoleManager<IdentityRole>(roleStore);
+                    var membership = model.MembershipTypes.SingleOrDefault(m => m.Id == model.AccountTypeId).Name.ToString();
+                      if (model.Email.Equals("admin@soDelivery.ca"))
+                    {
+                        await roleManager.CreateAsync(new IdentityRole("Admin"));
+                        await UserManager.AddToRoleAsync(user.Id, "Admin");
+                    }
+                    else { 
+                    if (membership.Contains("Driver"))
+                    {
+                        //For super Admin
+                        await roleManager.CreateAsync(new IdentityRole("Driver"));
+                        await UserManager.AddToRoleAsync(user.Id, "Driver");
+                    }
+                    else if (membership.Contains("Employeur"))
+                    {
+                        //For Regular Client
+                        await roleManager.CreateAsync(new IdentityRole("Employeur"));
+                        await UserManager.AddToRoleAsync(user.Id, "Employeur");
+                    }else if (model.Email.Equals("jjjkahn@gmail.com"))
+                        {
+                            await roleManager.CreateAsync(new IdentityRole("SuperAdmin"));
+                            await UserManager.AddToRoleAsync(user.Id, "SuperAdmin");
+                        }
+                    }
+
+                      await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
 
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                    Customer customer = new Customer()
-                    {
+                    //var account = accountRepository.Collection().ToList();
 
-                    };
+
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);

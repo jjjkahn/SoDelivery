@@ -13,18 +13,10 @@ namespace SoDelivery.WebUI.Controllers
         {
             return View();
         }
-        public ActionResult Index(int Id)
+        [Authorize]
+        public ActionResult Index()
         {
             
-            if(Id == 1)
-            {
-                ViewBag.Title = "Boss";
-            }
-            else
-            {
-                ViewBag.Title = "Deliverer";
-            }
-            ViewBag.Id = Id;
             return View();
         }
 

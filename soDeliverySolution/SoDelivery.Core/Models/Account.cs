@@ -8,6 +8,7 @@ namespace SoDelivery.Core.Models
 {
     public class Account : BaseEntity
     {
-        public string AccountType { get; set; }
+        public string Name { get; set; }
+        public string  Id { get; set; }
     }
 }

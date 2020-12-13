@@ -70,7 +70,7 @@ namespace SoDelivery.WebUI.Controllers
                 }
 
 
-                accountToEdit.AccountType = account.AccountType;
+                accountToEdit.Name = account.Name;
                 
                 context.Update(accountToEdit);
                 context.Commit();

@@ -10,7 +10,6 @@ namespace SoDelivery.DataAccess.SQL.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "SoDelivery.DataAccess.SQL.DataContext";
         }
 
         protected override void Seed(SoDelivery.DataAccess.SQL.DataContext context)

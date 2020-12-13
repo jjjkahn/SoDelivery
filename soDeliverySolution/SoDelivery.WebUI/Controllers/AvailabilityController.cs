@@ -1,4 +1,5 @@
-﻿using SoDelivery.Core.Contracts;
+﻿using Microsoft.AspNet.Identity;
+using SoDelivery.Core.Contracts;
 using SoDelivery.Core.Models;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Web.Mvc;
 
 namespace SoDelivery.WebUI.Controllers
 {
+    [Authorize(Roles ="Driver")]
     public class AvailabilityController : Controller
     {
         IRepository<Availability> context;
@@ -33,6 +35,7 @@ namespace SoDelivery.WebUI.Controllers
             {
                 return View(available);
             }
+            available.UserId = User.Identity.GetUserId();
             context.Insert(available);
             context.Commit();
             return RedirectToAction("Index");

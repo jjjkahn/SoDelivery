@@ -66,15 +66,15 @@
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.AccountType, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.AccountTypeId, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @if (ViewBag.Account == 2)
             {
-                @Html.TextBoxFor(m => m.AccountType, new { @class = "form-control", @Value = "Driver", @readonly = true })
+                @Html.DropDownListFor(m => m.AccountTypeId, new SelectList(Model.MembershipTypes, "Id", "Name"),new { @class = "form-control"})
             }
             else
             {
-                @Html.TextBoxFor(m => m.AccountType, new { @class = "form-control", @Value = "Employeur", @readonly = true })
+                @Html.DropDownListFor(m => m.AccountTypeId, new SelectList(Model.MembershipTypes, "Id", "Name"), new { @class = "form-control", @Value = "Employeur", @readonly = true })
             }
 
 

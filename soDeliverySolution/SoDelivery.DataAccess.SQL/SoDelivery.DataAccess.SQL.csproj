@@ -55,17 +55,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataContext.cs" />
-    <Compile Include="Migrations\202011272349410_InitialCreate.cs" />
-    <Compile Include="Migrations\202011272349410_InitialCreate.Designer.cs">
-      <DependentUpon>202011272349410_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\202011280254080_first.cs" />
+    <Compile Include="Migrations\202011280254080_first.Designer.cs">
+      <DependentUpon>202011280254080_first.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202011280049089_accountType.cs" />
-    <Compile Include="Migrations\202011280049089_accountType.Designer.cs">
-      <DependentUpon>202011280049089_accountType.cs</DependentUpon>
+    <Compile Include="Migrations\202011291625543_changedNames.cs" />
+    <Compile Include="Migrations\202011291625543_changedNames.Designer.cs">
+      <DependentUpon>202011291625543_changedNames.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202011280132365_AddeduserId.cs" />
-    <Compile Include="Migrations\202011280132365_AddeduserId.Designer.cs">
-      <DependentUpon>202011280132365_AddeduserId.cs</DependentUpon>
+    <Compile Include="Migrations\202011291913264_user.cs" />
+    <Compile Include="Migrations\202011291913264_user.Designer.cs">
+      <DependentUpon>202011291913264_user.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -82,14 +82,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202011272349410_InitialCreate.resx">
-      <DependentUpon>202011272349410_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202011280254080_first.resx">
+      <DependentUpon>202011280254080_first.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202011280049089_accountType.resx">
-      <DependentUpon>202011280049089_accountType.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202011291625543_changedNames.resx">
+      <DependentUpon>202011291625543_changedNames.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202011280132365_AddeduserId.resx">
-      <DependentUpon>202011280132365_AddeduserId.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202011291913264_user.resx">
+      <DependentUpon>202011291913264_user.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
