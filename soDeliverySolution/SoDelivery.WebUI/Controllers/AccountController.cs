@@ -155,6 +155,7 @@ namespace SoDelivery.WebUI.Controllers
             {
                 MembershipTypes = accounts
             };
+          
             return View(newUser);
         }
 
@@ -171,8 +172,10 @@ namespace SoDelivery.WebUI.Controllers
                     UserName = model.Email, 
                     Email = model.Email,
                     FirstName = model.FirstName,
+                    PhoneNumber = model.Phone,
                     LastName = model.LastName,
                     AccountTypeId = model.AccountTypeId,
+                    State = model.State,
                     ZipCode = model.ZipCode,
                     Street = model.Street,
                     City = model.City,
@@ -195,7 +198,7 @@ namespace SoDelivery.WebUI.Controllers
                     else { 
                     if (membership.Contains("Driver"))
                     {
-                        //For super Admin
+                        //For Driver
                         await roleManager.CreateAsync(new IdentityRole("Driver"));
                         await UserManager.AddToRoleAsync(user.Id, "Driver");
                     }

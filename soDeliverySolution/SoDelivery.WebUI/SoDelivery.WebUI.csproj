@@ -189,6 +189,8 @@
     <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AcountAdminController.cs" />
+    <Compile Include="Controllers\AdminAvailabilityController.cs" />
+    <Compile Include="Controllers\AdminTicketController.cs" />
     <Compile Include="Controllers\AvailabilityController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -204,10 +206,16 @@
     <Compile Include="Migrations\202011291915260_ss.Designer.cs">
       <DependentUpon>202011291915260_ss.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202012142202197_newchanges.cs" />
+    <Compile Include="Migrations\202012142202197_newchanges.Designer.cs">
+      <DependentUpon>202012142202197_newchanges.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AvailabilityUserViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\TicketUserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -223,6 +231,8 @@
     <Content Include="Content\Images\Driver.png" />
     <Content Include="Content\Images\Jphoto.png" />
     <Content Include="Content\Images\Question.png" />
+    <Content Include="Content\Images\sodelivery.svg" />
+    <Content Include="Content\Images\soDeliverylogo.png" />
     <Content Include="Content\Images\ZPhoto.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
@@ -236,6 +246,7 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\Images\ddd.webp" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -291,6 +302,14 @@
     <Content Include="Views\AcountAdmin\Index.cshtml" />
     <Content Include="Views\AcountAdmin\Create.cshtml" />
     <Content Include="Views\AcountAdmin\Edit.cshtml" />
+    <Content Include="Views\AdminTicket\Index.cshtml" />
+    <Content Include="Views\AdminTicket\Edit.cshtml" />
+    <Content Include="Views\AdminTicket\Delete.cshtml" />
+    <Content Include="Views\AdminAvailability\Index.cshtml" />
+    <Content Include="Views\AdminAvailability\Edit.cshtml" />
+    <Content Include="Views\AdminAvailability\Delete.cshtml" />
+    <Content Include="Views\Home\MockUp.cshtml" />
+    <Content Include="Views\AdminTicket\Asign.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -332,6 +351,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011291915260_ss.resx">
       <DependentUpon>202011291915260_ss.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012142202197_newchanges.resx">
+      <DependentUpon>202012142202197_newchanges.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

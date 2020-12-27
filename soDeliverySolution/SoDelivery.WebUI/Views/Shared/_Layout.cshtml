@@ -6,7 +6,7 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -17,6 +17,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+                <img src="~/Content/Images/sodelivery.svg" style="width:50px;height:50px;"/>
                 @Html.ActionLink("So Delivery", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
@@ -34,7 +35,8 @@
                     }
                     @if (User.IsInRole("Admin"))
                     {
-
+                        <li>@Html.ActionLink("Ticket", "Index", "AdminTicket")</li>
+                        <li>@Html.ActionLink("Availabilities", "Index", "AdminAvailability")</li>
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")

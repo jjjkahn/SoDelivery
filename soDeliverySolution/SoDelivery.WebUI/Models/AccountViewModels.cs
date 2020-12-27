@@ -88,6 +88,9 @@ namespace SoDelivery.WebUI.Models
         [DisplayName("Last Name")]
         public string LastName { get; set; }
         [Required]
+        [DisplayName("Phone")]
+        public string Phone { get; set; }
+        [Required]
 
         public string Street { get; set; }
         [Required]
@@ -96,6 +99,7 @@ namespace SoDelivery.WebUI.Models
         public string State { get; set; }
         [Required]
         public string ZipCode { get; set; }
+
         public ICollection<Account> MembershipTypes { get; set; }
         [Required]
         public string AccountTypeId { get; set; }

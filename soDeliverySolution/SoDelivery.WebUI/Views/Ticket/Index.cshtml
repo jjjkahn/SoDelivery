@@ -4,16 +4,17 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<br />
+
+    <button class="btn btn-primary">
+        @Html.ActionLink("Create New", "Create")
+    </button>
+<br />
+<br />
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedAt)
-        </th>
+       
         <th>
             @Html.DisplayNameFor(model => model.Day)
         </th>
@@ -37,9 +38,7 @@
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedAt)
-        </td>
+       
         <td>
             @Html.DisplayFor(modelItem => item.Day)
         </td>
@@ -59,7 +58,12 @@
             @Html.DisplayFor(modelItem => item.Vehicle)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) 
+            <button class="btn btn-warning">
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+            </button>
+            <button class="btn btn-danger">
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </button>
         </td>
     </tr>
 }

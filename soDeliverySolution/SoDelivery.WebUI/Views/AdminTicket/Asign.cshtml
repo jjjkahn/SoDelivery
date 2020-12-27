@@ -1,0 +1,40 @@
+﻿@model dynamic
+@{
+    ViewBag.Title = "Assing";
+}
+<h2>@ViewBag.Message</h2>
+
+<p><b>Teacher List</b></p>
+
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Code</th>
+        <th>Name</th>
+    </tr>
+   
+        <tr>
+            <td>@Model.Ticket.Id</td>
+
+        </tr>
+
+   
+</table>
+
+<p><b>Student List</b></p>
+
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Code</th>
+        <th>Name</th>
+        <th>Enrollment No</th>
+    </tr>
+    @foreach (var student in Model.users)
+    {
+<tr>
+    
+    <td><button>@student.Email @Html.ActionLink("Asign It", "AsignIT", new { TicketId = @Model.Ticket.Id , userId = student.Id })</button></td>
+</tr>
+    }
+</table>

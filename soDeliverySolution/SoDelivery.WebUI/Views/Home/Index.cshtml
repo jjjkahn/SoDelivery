@@ -2,17 +2,32 @@
 @{
     ViewBag.Title = ViewBag.Title;
 }
-@if (User.IsInRole("Employeur"))
+
+@if (User.IsInRole("Driver") || User.IsInRole("Employeur"))
 {
-    <h1>Welcome Boss</h1>
-}
-else if (User.IsInRole("Driver"))
-{
-    <h1>Welcome Deliverer</h1>
+    <br />
+    <br />
+    <div class="col-md-4">
+        <img src="~/Content/Images/soDeliverylogo.png" style="width:80%;"/>
+    </div>
+    <div class="col-md-8">
+        <h1>Welcome @User.Identity.Name</h1>
+    </div>
+
+
 }
 else if (User.IsInRole("Admin"))
 {
-    <h1>Welcome Administrator</h1>
+    <br />
+    <br />
+    <div class="col-md-4">
+        <img src="~/Content/Images/soDeliverylogo.png" style="width:80%;" />
+    </div>
+    <div class="col-md-8">
+        <h1>Welcome Administrator</h1>
+    </div>
+    
+
 }
 else if (User.IsInRole("SuperAdmin"))
 {
@@ -20,6 +35,14 @@ else if (User.IsInRole("SuperAdmin"))
 }
 else
 {
+    <section style="background-color:black;">
+        <div class="col-sm-6">
+            @Html.ActionLink("Log in", "Login", "Account")
+        </div>
+        <div class="col-sm-6">
+            @Html.ActionLink("Register", "Register", "Account")
+        </div>
 
+    </section>
 }
 

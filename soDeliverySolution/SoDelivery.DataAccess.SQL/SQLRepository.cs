@@ -3,6 +3,7 @@ using SoDelivery.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -50,8 +51,9 @@ namespace SoDelivery.DataAccess.SQL
 
         public void Update(T t)
         {
-            dbset.Attach(t);
-            context.Entry(t).State = EntityState.Modified;
+            //dbset.Attach(t);
+            dbset.AddOrUpdate(t);
+            //context.Entry(t).State = EntityState.Modified;
         }
     }
 }

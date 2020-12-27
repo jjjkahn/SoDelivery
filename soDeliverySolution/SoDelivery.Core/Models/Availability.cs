@@ -27,5 +27,7 @@ namespace SoDelivery.Core.Models
         //       [DisplayFormat(DataFormatString = "{HH:mm}", ApplyFormatInEditMode = true)]
         [DisplayName("End Time")]
         public TimeSpan? EndTime { get; set; }
+
+        public Ticket ticketAssigned { get; set; }
     }
 }

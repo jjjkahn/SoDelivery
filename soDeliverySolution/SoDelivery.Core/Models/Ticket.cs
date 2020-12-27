@@ -21,7 +21,8 @@ namespace SoDelivery.Core.Models
        
         [CustomDateRange(0, 20)]
         [DisplayName("Day")]
-        public DateTime ?Day { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
+        public DateTime Day { get; set; }
         [Required(ErrorMessage = "Expiration Date is required")]
         [DataType(DataType.Time)]
 // [DisplayFormat(DataFormatString = "{HH:mm}", ApplyFormatInEditMode = true)]

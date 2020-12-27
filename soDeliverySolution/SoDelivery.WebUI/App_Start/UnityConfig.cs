@@ -6,6 +6,12 @@ using SoDelivery.DataAccess.InMemory;
 using SoDelivery.DataAccess.SQL;
 using SoDelivery.WebUI.Controllers;
 using Unity.Injection;
+using SoDelivery.Core.ViewModel;
+using SoDelivery.WebUI.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Owin.Security;
+using System.Web;
 
 namespace SoDelivery.WebUI
 {
@@ -51,7 +57,20 @@ namespace SoDelivery.WebUI
             container.RegisterType<IRepository<Availability>, SQLRepository<Availability>>();
             container.RegisterType<IRepository<Account>, SQLRepository<Account>>();
             container.RegisterType<IRepository<Customer>, SQLRepository<Customer>>();
-            //container.RegisterType<AccountController>( new InjectionConstructor());
+            container.RegisterType<IAuthenticationManager>(
+    new InjectionFactory(
+        o => System.Web.HttpContext.Current.GetOwinContext().Authentication
+    )
+);
+
+            container.RegisterType<IUserStore<ApplicationUser>, UserStore<ApplicationUser>>(
+                new InjectionConstructor());
+            //        container.RegisterType<ApplicationUser>(
+            //  new InjectionFactory(c => new ApplicationUser()));
+            //  container.RegisterType<IRepository<TicketUserViewModel>, SQLRepository<TicketUserViewModel>>();
+
+            //  container.RegisterType<AccountController>( new InjectionConstructor());
+            // container.RegisterType<ApplicationUser>(new InjectionConstructor());
         }
     }
 }

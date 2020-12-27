@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace SoDelivery.WebUI.Controllers
 {
-    [Authorize(Roles ="Driver")]
+    [Authorize(Roles = "Driver")]
     public class AvailabilityController : Controller
     {
         IRepository<Availability> context;
@@ -21,7 +21,33 @@ namespace SoDelivery.WebUI.Controllers
         public ActionResult Index()
         {
             List<Availability> availabilities = context.Collection().ToList();
-            return View(availabilities);
+            // List<Ticket> tickets = context.Collection().ToList();
+            var ID = User.Identity.GetUserId();
+            //IEnumerable<Ticket> t = from r in tickets
+            //          where r.UserId.Equals(ID)
+            //          select r;
+            List<Availability> t = new List<Availability>();
+            foreach (var r in availabilities)
+            {
+                if (r.UserId == null)
+                {
+                    continue;
+                }
+                try
+                {
+                    if (r.UserId.Equals(ID))
+                    {
+                        t.Add(r);
+                    }
+                    else if (r.Id.Equals(ID))
+                    {
+                        t.Add(r);
+                    }
+                }
+                catch (Exception e) { }
+
+            }
+            return View(t);
         }
         public ActionResult Create()
         {
@@ -72,11 +98,40 @@ namespace SoDelivery.WebUI.Controllers
 
                 productToEdit.CreatedAt = available.CreatedAt;
                 productToEdit.Day = available.Day;
-               
+
                 productToEdit.EndTime = available.EndTime;
                 productToEdit.StartTime = available.StartTime;
-                
+
                 context.Update(productToEdit);
+                context.Commit();
+                return RedirectToAction("Index");
+            }
+        }
+        public ActionResult Delete(string Id)
+        {
+            Availability ticketToDelete = context.Find(Id);
+            if (ticketToDelete == null)
+            {
+                return HttpNotFound();
+            }
+            else
+            {
+                return View(ticketToDelete);
+            }
+        }
+
+        [HttpPost]
+        [ActionName("Delete")]
+        public ActionResult ConfirmDelete(string Id)
+        {
+            Availability ticketToDelete = context.Find(Id);
+            if (ticketToDelete == null)
+            {
+                return HttpNotFound();
+            }
+            else
+            {
+                context.Delete(Id);
                 context.Commit();
                 return RedirectToAction("Index");
             }

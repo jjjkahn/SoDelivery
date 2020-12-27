@@ -1,0 +1,64 @@
+﻿@model IEnumerable<SoDelivery.WebUI.Models.AvailabilityUserViewModel>
+
+<br />
+<h2>Availabilities</h2>
+<br />
+@if (Model.Count() != 0)
+{
+    foreach (var item in Model)
+    {
+        <div class="w3-container">
+            <div class="w3-panel w3-card">
+                <br />
+                <div class="col-md-12">
+                    <div class="col-md-3">
+                        <p>Name: @item.User.FirstName @item.User.LastName</p>
+                        <p>Number: @item.User.PhoneNumber</p>
+                        <p>Email: @item.User.Email </p>
+                        <p>Address: @item.User.Street, @item.User.State, @item.User.ZipCode</p>
+                    </div>
+                    <div class="col-md-7">
+                        @foreach (var t in item.Availabilities)
+                        {
+                            if (t.Day >= DateTime.Now) { 
+                            <div class="col-md-10">
+
+                                @*<p>Created At: @t.CreatedAt</p>*@
+                                <p>Start Time: @t.StartTime</p>
+                                <p>End Time: @t.EndTime</p>
+                                <p>Day: @t.Day</p>
+                                <hr />
+                            </div>
+                            
+
+                            <div class="col-md-2" style="display:flex;">
+                                <button class="btn btn-warning" style="margin-right:5px;">
+                                    @Html.ActionLink("Edit", "Edit", new { id = t.Id })
+                                </button>
+
+                                <button class="btn btn-danger">
+                                    @Html.ActionLink("Delete", "Delete", new { id = t.Id })
+                                </button>
+
+                            </div>
+                            }
+                        }
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    }
+
+}
+else
+{
+    @*<div class="col-md-12">
+            <img src="~/Content/Images/ddd.webp" />
+        </div>*@
+
+    <div class="col-md-12">
+        <div class="tenor-gif-embed" data-postid="5251667" data-share-method="host" data-width="100%" data-aspect-ratio="2.0080645161290325"><a href="https://tenor.com/view/broke-poor-wallet-gif-5251667">Broke Poor GIF</a> from <a href="https://tenor.com/search/broke-gifs">Broke GIFs</a></div>
+        <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+    </div>
+}

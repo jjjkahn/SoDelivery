@@ -11,7 +11,7 @@
     <title>StartUp</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>So Delivery</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <style>
@@ -65,23 +65,28 @@
 
 <body>
     <div class="container">
-        <div class="split left"onclick="location.href='/Account/Register/1';">
+
+        <div class="split left" onclick="location.href='/Account/Register/1';">
             <div class="centered">
                 <img src="~/Content/Images/boss.png" alt="Boss">*
                 <h2>Employeur</h2>
-                
+
             </div>
         </div>
 
         <div class="split right" onclick="location.href='/Account/Register/2';">
-           
-                <div class="centered">
-                    <img src="~/Content/Images/Driver.jpg"  alt="Driver">
-                    <h2>Livreur</h2>
 
-                </div>
-            
+            <div class="centered">
+                <img src="~/Content/Images/Driver.jpg" alt="Driver">
+                <h2>Livreur</h2>
+
+            </div>
+
         </div>
+        @*<div class="col-md-12" onclick="location.href='/Account/Login';" style="background-color:deeppink;">
+            <a>Sign in</a>
+        </div>*@
     </div>
+   
 </body>
 </html>
